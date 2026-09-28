@@ -177,20 +177,28 @@ textarea{width:100%;background:var(--card2);border:1px solid var(--stroke);borde
   .wrap{padding:14px 0 14px 14px;}
 }
 
-.fnav{display:flex;justify-content:space-around;align-items:flex-end;margin:0 8px 8px;padding:8px 4px 8px;border-radius:24px;background:linear-gradient(135deg,rgba(155,77,255,.18),rgba(38,208,240,.10));border:1px solid var(--stroke);}
-.fnav .ni{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;color:var(--muted);position:relative;padding-top:2px;transition:transform .2s,color .2s;}
-.fnav .ni svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+.fnav{position:relative;display:flex;justify-content:space-around;align-items:flex-end;margin:0 8px 8px;padding:14px 4px 8px;}
+.fnav::before{content:'';position:absolute;inset:0;z-index:0;border-radius:26px;background:linear-gradient(135deg,rgba(155,77,255,.22),rgba(38,208,240,.12));border:1px solid var(--stroke);-webkit-mask:radial-gradient(circle 28px at 50% 21px,transparent 27px,#000 28px);mask:radial-gradient(circle 28px at 50% 21px,transparent 27px,#000 28px);}
+.fnav .ni{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;color:var(--muted);transition:color .2s;}
+.fnav .ni svg{width:28px;height:28px;opacity:.7;transition:opacity .2s,filter .2s;overflow:visible;}
 .fnav .ni .lb{font-size:8px;line-height:1;white-space:nowrap;}
-.fnav .ni:hover{transform:translateY(-3px);color:var(--text);}
-.fnav .ni.on{color:var(--cyan);}
-.fnav .ni.on svg{filter:drop-shadow(0 0 4px var(--cyan));}
-.fnav .ni.on::after{content:'';position:absolute;bottom:-5px;width:14px;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--cyan),var(--pink));box-shadow:0 0 8px var(--cyan);}
-.fnav .ni.plus{margin-top:-22px;color:var(--text);}
+.fnav .ni:hover svg{opacity:1;animation:hop .55s ease;}
+.fnav .ni.on{color:var(--gl,var(--cyan));}
+.fnav .ni.on svg{opacity:1;filter:drop-shadow(0 0 6px var(--gl,var(--cyan)));}
+.fnav .ni.on::after{content:'';position:absolute;bottom:-6px;width:4px;height:4px;border-radius:50%;background:var(--gl,var(--cyan));box-shadow:0 0 6px var(--gl,var(--cyan)),9px -3px 0 0 var(--gl,var(--cyan));margin-inline-end:9px;}
+.fnav .ni.plus{margin-top:-14px;color:var(--text);}
 .fnav .orb{position:relative;width:42px;height:42px;border-radius:50%;background-image:var(--rabbit-img);background-size:cover;background-position:center;border:2px solid #0c0724;box-shadow:0 0 0 2px var(--pink),0 0 18px var(--pink);animation:rabbitGlow 3.2s ease-in-out infinite;}
 .fnav .orb b{position:absolute;bottom:-4px;inset-inline-end:-4px;width:16px;height:16px;border-radius:50%;background:linear-gradient(135deg,var(--violet),var(--pink));color:#fff;font-size:13px;line-height:15px;text-align:center;border:1.5px solid #0c0724;}
+@keyframes hop{0%,100%{transform:translateY(0)}35%{transform:translateY(-7px) rotate(-6deg)}65%{transform:translateY(-2px) rotate(4deg)}}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<linearGradient id="gHome" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2ad8c9"/><stop offset="1" stop-color="#26a0f0"/></linearGradient>
+<linearGradient id="gDisc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9b4dff"/><stop offset="1" stop-color="#ef46d6"/></linearGradient>
+<linearGradient id="gMsg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#26d0f0"/><stop offset="1" stop-color="#9b4dff"/></linearGradient>
+<linearGradient id="gProf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff7ac8"/><stop offset="1" stop-color="#9b4dff"/></linearGradient>
+</defs></svg>
 <button id="langBtn" onclick="toggleLang()">🌐</button>
 <div class="wrap">
 
@@ -482,18 +490,19 @@ function render(){
   document.getElementById('notifList').innerHTML=notifs.map(n=>`<div class="nitem"><div class="av">${n.av}</div><div class="meta">${n.n[lang]}<span>${tr(n.t)}</span></div></div>`).join('');
 }
 const NAV_ICONS={
- home:'<svg viewBox="0 0 24 24"><ellipse cx="9.2" cy="3.8" rx="1.3" ry="2.8" transform="rotate(-12 9.2 3.8)"/><ellipse cx="14.8" cy="3.8" rx="1.3" ry="2.8" transform="rotate(12 14.8 3.8)"/><path d="M4 12.5 12 7l8 5.5V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M10 21v-5h4v5"/></svg>',
- discover:'<svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/><path d="M10.5 7.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9z" fill="currentColor" stroke="none"/></svg>',
- messages:'<svg viewBox="0 0 24 24"><ellipse cx="8.5" cy="4.4" rx="1.2" ry="2.6" transform="rotate(-10 8.5 4.4)"/><ellipse cx="15.5" cy="4.4" rx="1.2" ry="2.6" transform="rotate(10 15.5 4.4)"/><path d="M5 8h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-8l-4 3v-3H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2z"/><circle cx="9" cy="13.5" r=".9" fill="currentColor" stroke="none"/><circle cx="15" cy="13.5" r=".9" fill="currentColor" stroke="none"/></svg>',
- profile:'<svg viewBox="0 0 24 24"><ellipse cx="9" cy="5" rx="1.6" ry="4" transform="rotate(-8 9 5)"/><ellipse cx="15" cy="5" rx="1.6" ry="4" transform="rotate(8 15 5)"/><circle cx="12" cy="14.5" r="6.5"/><circle cx="9.8" cy="13.5" r=".9" fill="currentColor" stroke="none"/><circle cx="14.2" cy="13.5" r=".9" fill="currentColor" stroke="none"/><path d="M11 16.5q1 .9 2 0"/></svg>'
+ home:'<svg viewBox="0 0 32 32"><path d="M3 28C3 15 9 6 16 6s13 9 13 22z" fill="url(#gHome)"/><path d="M10.5 28v-6a5.5 5.5 0 0 1 11 0v6z" fill="#0c0724"/><ellipse cx="14" cy="22.5" rx="1.2" ry="3" fill="#ffd6f4" transform="rotate(-8 14 22.5)"/><ellipse cx="18" cy="22.5" rx="1.2" ry="3" fill="#ffd6f4" transform="rotate(8 18 22.5)"/><path d="M1.5 28.6h29" stroke="url(#gHome)" stroke-width="2" stroke-linecap="round"/></svg>',
+ discover:'<svg viewBox="0 0 32 32"><ellipse cx="11" cy="13" rx="3.4" ry="9" transform="rotate(-14 11 13)" fill="url(#gDisc)"/><ellipse cx="21" cy="13" rx="3.4" ry="9" transform="rotate(14 21 13)" fill="url(#gDisc)"/><ellipse cx="11" cy="13.5" rx="1.3" ry="6" transform="rotate(-14 11 13.5)" fill="#ffd6f4" opacity=".85"/><ellipse cx="21" cy="13.5" rx="1.3" ry="6" transform="rotate(14 21 13.5)" fill="#ffd6f4" opacity=".85"/><circle cx="16" cy="26" r="4.8" fill="url(#gDisc)"/><path d="M4 12Q1.8 8 4 4M1.5 14Q-1.5 8 1.5 2M28 12Q30.2 8 28 4M30.5 14Q33.5 8 30.5 2" fill="none" stroke="url(#gDisc)" stroke-width="1.6" stroke-linecap="round"/></svg>',
+ messages:'<svg viewBox="0 0 32 32"><path d="M13 6.5C11 3 12 1.5 13.5 2.5M16 6C16 2 17.5 .8 18 2.5M19 6.5C21 3.5 23 3 23 4.5" stroke="#2ad8c9" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M6 10a4 4 0 0 1 4-4h12a4 4 0 0 1 4 4c0 3-1.6 5-3 7.5L17.4 29c-.7 1.4-2.1 1.4-2.8 0L9 17.5C7.6 15 6 13 6 10z" fill="url(#gMsg)"/><path d="M11 11h10M12.5 15h7" stroke="#fff" stroke-width="1.8" stroke-linecap="round" opacity=".9"/></svg>',
+ profile:'<svg viewBox="0 0 32 32"><path d="M16 28c-5 0-7.5-3.2-6-6 1.4-2.6 3.6-4.5 6-4.5s4.6 1.9 6 4.5c1.5 2.8-1 6-6 6z" fill="url(#gProf)"/><ellipse cx="7.5" cy="15.5" rx="2.4" ry="3.2" transform="rotate(-22 7.5 15.5)" fill="url(#gProf)"/><ellipse cx="12.6" cy="10" rx="2.5" ry="3.5" transform="rotate(-8 12.6 10)" fill="url(#gProf)"/><ellipse cx="19.4" cy="10" rx="2.5" ry="3.5" transform="rotate(8 19.4 10)" fill="url(#gProf)"/><ellipse cx="24.5" cy="15.5" rx="2.4" ry="3.2" transform="rotate(22 24.5 15.5)" fill="url(#gProf)"/></svg>'
 };
+const NAV_GLOW={home:'#2ad8c9',discover:'#c25bff',messages:'#26d0f0',profile:'#ff7ac8'};
 const NAV_ITEMS=[['home','f-home','b_home'],['discover','f-video','b_discover'],['create','f-create','b_create'],['messages','f-messages','b_messages'],['profile','f-profile','b_profile']];
 function buildNav(){
   document.querySelectorAll('.fnav').forEach(n=>{
     const act=n.dataset.active;
     n.innerHTML=NAV_ITEMS.map(([k,t,l])=>k==='create'
       ?`<div class="ni plus" onclick="focusFrame('${t}')"><span class="orb"><b>+</b></span><span class="lb" data-i18n="${l}"></span></div>`
-      :`<div class="ni ${act===k?'on':''}" onclick="focusFrame('${t}')">${NAV_ICONS[k]}<span class="lb" data-i18n="${l}"></span></div>`
+      :`<div class="ni ${act===k?'on':''}" style="--gl:${NAV_GLOW[k]}" onclick="focusFrame('${t}')">${NAV_ICONS[k]}<span class="lb" data-i18n="${l}"></span></div>`
     ).join('');
   });
 }
