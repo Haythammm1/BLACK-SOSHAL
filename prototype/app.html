@@ -254,6 +254,53 @@ textarea{width:100%;background:var(--card2);border:1px solid var(--stroke);borde
 .headline h1{font-size:15px;}
 .signup-cta{padding:9px 18px;margin-top:6px;}
 .nic .ring{width:50px;height:50px;}
+
+/* ================= richer space scene ================= */
+@keyframes tw{0%,100%{opacity:.25}50%{opacity:1}}
+@keyframes sparkle{0%,100%{opacity:.12;transform:scale(.5) rotate(0)}50%{opacity:1;transform:scale(1.15) rotate(45deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes sunPulse{0%,100%{transform:scale(1);opacity:.95}50%{transform:scale(1.06);opacity:1}}
+@keyframes auroraSway{
+ 0%{transform:translateX(-4%) skewX(-7deg) scaleY(.92);opacity:.35}
+ 50%{opacity:.75}
+ 100%{transform:translateX(4%) skewX(6deg) scaleY(1.08);opacity:.5}
+}
+.space::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 125%,rgba(155,77,255,.30),transparent 60%),linear-gradient(180deg,rgba(2,1,10,.6),transparent 75%);}
+.space .aur{position:absolute;left:-12%;right:-12%;top:-14%;height:78%;filter:blur(9px);will-change:transform,opacity;animation:auroraSway 10s ease-in-out infinite alternate;-webkit-mask-image:repeating-linear-gradient(90deg,#000 0 5%,rgba(0,0,0,.2) 8%,#000 12%);mask-image:repeating-linear-gradient(90deg,#000 0 5%,rgba(0,0,0,.2) 8%,#000 12%);}
+.space .aur1{background:linear-gradient(180deg,transparent 0%,rgba(40,255,170,0) 6%,rgba(40,255,170,.62) 38%,rgba(40,200,255,.36) 66%,transparent 100%);}
+.space .aur2{top:-20%;height:70%;animation-duration:13s;animation-delay:-4s;-webkit-mask-image:repeating-linear-gradient(90deg,#000 0 7%,rgba(0,0,0,.15) 11%,#000 16%);mask-image:repeating-linear-gradient(90deg,#000 0 7%,rgba(0,0,0,.15) 11%,#000 16%);background:linear-gradient(180deg,transparent,rgba(180,90,255,.56) 42%,rgba(255,80,200,.3) 70%,transparent);}
+.space .aur3{top:-8%;height:60%;animation-duration:16s;animation-delay:-8s;background:linear-gradient(180deg,transparent,rgba(60,255,220,.4) 45%,transparent);}
+.space .st{position:absolute;top:0;left:0;border-radius:50%;background:transparent;}
+.space .s1{width:1px;height:1px;box-shadow:45.2vw 286px 0px 0 #dfe9ff,45.2vw 300px 0px 0 #ffffff,18.5vw 262px 0px 0 #dfe9ff,63.0vw 95px 0px 0 #ffffff,44.7vw 72px 0px 0 #ffffff,53.9vw 324px 0px 0 #ffffff,59.5vw 202px 0px 0 #dfe9ff,65.4vw 315px 0px 0 #cfe0ff,15.7vw 7px 0px 0 #cfe0ff,6.3vw 18px 0px 0 #ffffff,88.0vw 307px 0px 0 #ffffff,77.8vw 167px 0px 0 #dfe9ff,59.1vw 100px 0px 0 #cfe0ff,23.4vw 150px 0px 0 #dfe9ff,0.5vw 43px 0px 0 #dfe9ff,65.5vw 208px 0px 0 #cfe0ff,99.6vw 42px 0px 0 #cfe0ff,25.4vw 117px 0px 0 #cfe0ff,28.9vw 35px 0px 0 #cfe0ff,76.6vw 205px 0px 0 #ffffff,84.7vw 197px 0px 0 #ffffff,95.8vw 0px 0px 0 #ffffff,21.0vw 26px 0px 0 #dfe9ff,37.5vw 203px 0px 0 #dfe9ff,7.3vw 322px 0px 0 #ffffff,77.9vw 138px 0px 0 #dfe9ff,8.7vw 170px 0px 0 #ffffff,96.4vw 60px 0px 0 #ffffff,24.6vw 51px 0px 0 #ffffff,6.0vw 249px 0px 0 #ffffff,68.2vw 96px 0px 0 #dfe9ff,50.9vw 67px 0px 0 #dfe9ff,64.4vw 59px 0px 0 #dfe9ff,42.1vw 108px 0px 0 #ffffff,27.0vw 303px 0px 0 #dfe9ff,99.8vw 10px 0px 0 #ffffff,18.7vw 308px 0px 0 #cfe0ff,57.7vw 21px 0px 0 #ffffff,21.3vw 132px 0px 0 #ffffff,77.3vw 168px 0px 0 #dfe9ff,38.6vw 38px 0px 0 #ffffff,20.9vw 325px 0px 0 #ffffff,1.6vw 188px 0px 0 #dfe9ff,62.2vw 65px 0px 0 #cfe0ff,48.4vw 294px 0px 0 #ffffff,86.7vw 93px 0px 0 #cfe0ff,15.4vw 116px 0px 0 #cfe0ff,24.9vw 97px 0px 0 #ffffff,73.9vw 283px 0px 0 #ffffff,68.7vw 198px 0px 0 #dfe9ff,60.4vw 215px 0px 0 #ffffff,10.4vw 19px 0px 0 #cfe0ff,96.3vw 122px 0px 0 #cfe0ff,70.5vw 131px 0px 0 #dfe9ff,82.4vw 305px 0px 0 #dfe9ff,29.3vw 89px 0px 0 #cfe0ff,97.7vw 64px 0px 0 #ffffff,47.9vw 315px 0px 0 #cfe0ff,7.4vw 108px 0px 0 #ffffff,74.9vw 35px 0px 0 #dfe9ff,41.1vw 127px 0px 0 #ffffff,4.7vw 144px 0px 0 #dfe9ff,53.1vw 67px 0px 0 #ffffff,36.2vw 230px 0px 0 #dfe9ff,65.7vw 267px 0px 0 #cfe0ff,94.7vw 302px 0px 0 #ffffff,92.4vw 243px 0px 0 #dfe9ff,70.1vw 17px 0px 0 #ffffff,59.8vw 38px 0px 0 #dfe9ff,6.7vw 159px 0px 0 #dfe9ff;animation:tw 4s ease-in-out infinite;}
+.space .s2{width:2px;height:2px;box-shadow:13.7vw 37px 0px 0 #ffffff,45.3vw 188px 0px 0 #cfe0ff,4.4vw 66px 0px 0 #dfe9ff,35.2vw 242px 0px 0 #ffffff,87.1vw 213px 0px 0 #ffffff,86.3vw 293px 0px 0 #ffffff,62.5vw 195px 0px 0 #dfe9ff,58.3vw 311px 0px 0 #ffffff,8.0vw 327px 0px 0 #ffffff,99.3vw 213px 0px 0 #cfe0ff,33.0vw 297px 0px 0 #dfe9ff,44.1vw 277px 0px 0 #ffffff,51.9vw 263px 0px 0 #ffffff,31.0vw 44px 0px 0 #dfe9ff,2.2vw 57px 0px 0 #dfe9ff,78.0vw 248px 0px 0 #dfe9ff,89.6vw 188px 0px 0 #dfe9ff,14.3vw 313px 0px 0 #ffffff,51.8vw 175px 0px 0 #cfe0ff,93.0vw 255px 0px 0 #ffffff,32.7vw 128px 0px 0 #ffffff,63.4vw 102px 0px 0 #ffffff,38.4vw 298px 0px 0 #dfe9ff,21.0vw 68px 0px 0 #dfe9ff,35.1vw 20px 0px 0 #cfe0ff,6.4vw 141px 0px 0 #ffffff,11.3vw 241px 0px 0 #dfe9ff,92.6vw 211px 0px 0 #dfe9ff;animation:tw 6s ease-in-out infinite 1.5s;}
+.space .s3{width:2px;height:2px;box-shadow:62.6vw 252px 4px 0 #c9f3ff,71.6vw 319px 4px 0 #ffd0f0,32.0vw 16px 4px 0 #c9f3ff,87.3vw 21px 4px 0 #c9f3ff,57.1vw 158px 4px 0 #ffffff,64.1vw 207px 4px 0 #ffd0f0,19.0vw 136px 4px 0 #ffe9c2,77.9vw 24px 4px 0 #ffffff,44.6vw 322px 4px 0 #c9f3ff,95.8vw 101px 4px 0 #ffe9c2;animation:tw 3s ease-in-out infinite .8s;}
+.space .spark{position:absolute;width:14px;height:14px;background:linear-gradient(#fff,#fff) center/1.5px 100% no-repeat,linear-gradient(#fff,#fff) center/100% 1.5px no-repeat;filter:drop-shadow(0 0 4px #fff);animation:sparkle 3.6s ease-in-out infinite;}
+/* sun peeking from the corner + faint orbits */
+.space .sun{position:absolute;left:calc(-75px*var(--k));top:calc(-75px*var(--k));width:calc(150px*var(--k));height:calc(150px*var(--k));border-radius:50%;background:radial-gradient(circle,#fffbe0 0 26%,#ffd24a 40%,#ff8a1a 60%,rgba(255,80,20,.4) 76%,transparent 82%);box-shadow:0 0 50px 16px rgba(255,140,30,.38);animation:sunPulse 5s ease-in-out infinite;}
+.space .sun::before{content:'';position:absolute;inset:-45%;border-radius:50%;background:repeating-conic-gradient(rgba(255,190,70,0) 0 8deg,rgba(255,190,70,.24) 10deg,rgba(255,190,70,0) 12deg 24deg);-webkit-mask:radial-gradient(circle,transparent 26%,#000 30%,transparent 62%);mask:radial-gradient(circle,transparent 26%,#000 30%,transparent 62%);animation:spin 50s linear infinite;}
+.space .orbit{position:absolute;left:0;top:0;border:1px dashed rgba(255,255,255,.11);border-radius:50%;transform:translate(-50%,-50%);}
+.space .o1{width:calc(280px*var(--k));height:calc(280px*var(--k));}
+.space .o2{width:calc(460px*var(--k));height:calc(460px*var(--k));}
+.space .o3{width:calc(700px*var(--k));height:calc(700px*var(--k));}
+.space .o4{width:calc(980px*var(--k));height:calc(980px*var(--k));}
+/* planets: slightly bigger, shaded like spheres, with atmosphere */
+.space .pl{width:calc(var(--d)*.78px*var(--k));height:calc(var(--d)*.78px*var(--k));left:calc(var(--x) - var(--d)*.39px*var(--k));}
+.space .p1{background:radial-gradient(circle at 62% 62%,rgba(60,0,0,.35) 0 9%,transparent 10%),radial-gradient(circle at 34% 70%,rgba(60,0,0,.3) 0 6%,transparent 7%),radial-gradient(circle at 70% 30%,rgba(60,0,0,.25) 0 5%,transparent 6%),radial-gradient(circle at 32% 28%,#fff1a8,#ff9a1f 32%,#e0341a 62%,#5a0a08 100%);box-shadow:inset -7px -6px 12px rgba(0,0,0,.6),inset 3px 3px 7px rgba(255,255,255,.25),0 0 22px rgba(255,120,20,.7);}
+.space .p2{background:repeating-linear-gradient(8deg,rgba(255,255,255,.12) 0 4%,transparent 4% 11%),radial-gradient(circle at 32% 28%,#e7c8ff,#9b4dff 45%,#3a1470 100%);box-shadow:inset -7px -6px 12px rgba(0,0,0,.55),inset 3px 3px 7px rgba(255,255,255,.22),0 0 20px rgba(155,77,255,.65);}
+.space .p3{background:repeating-linear-gradient(-6deg,rgba(255,255,255,.10) 0 5%,transparent 5% 13%),radial-gradient(circle at 32% 28%,#c8fbff,#26d0f0 45%,#0a4a78 100%);box-shadow:inset -8px -7px 14px rgba(0,0,0,.55),inset 3px 3px 8px rgba(255,255,255,.25),0 0 22px rgba(38,208,240,.6);}
+.space .p4{background:repeating-linear-gradient(10deg,rgba(255,255,255,.10) 0 4%,transparent 4% 12%),radial-gradient(circle at 32% 28%,#ffd0f0,#ef46d6 45%,#6a1360 100%);box-shadow:inset -7px -6px 12px rgba(0,0,0,.55),inset 3px 3px 7px rgba(255,255,255,.22),0 0 20px rgba(239,70,214,.6);}
+.space .p5{background:radial-gradient(ellipse at 66% 62%,rgba(190,50,20,.7) 0 9%,transparent 11%),repeating-linear-gradient(0deg,rgba(130,60,10,.38) 0 7%,transparent 7% 15%),radial-gradient(circle at 32% 28%,#fff6c2,#ffc233 45%,#a3540a 100%);box-shadow:inset -8px -7px 14px rgba(0,0,0,.55),inset 3px 3px 8px rgba(255,255,255,.25),0 0 22px rgba(255,190,50,.65);}
+/* rings: back half behind the planet, front half over it */
+.space .rg::before,.space .rg::after{content:'';position:absolute;left:-40%;right:-40%;top:33%;height:34%;border-radius:50%;border:2.5px solid rgba(255,235,200,.6);transform:rotate(-16deg);box-shadow:0 0 6px rgba(255,220,180,.35);}
+.space .rg::before{z-index:-1;}
+.space .rg::after{clip-path:inset(50% -10% 0 -10%);}
+/* moon orbiting the cyan planet + small decorative worlds */
+.space .orbm{position:absolute;inset:-34%;border-radius:50%;animation:spin 8s linear infinite;}
+.space .orbm i{position:absolute;left:50%;top:0;width:calc(8px*var(--k));height:calc(8px*var(--k));margin-left:calc(-4px*var(--k));border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff,#aab4cc 60%,#5a6480);box-shadow:0 0 6px rgba(255,255,255,.6);}
+.space .sm{top:calc(var(--y)*1px*var(--k));width:calc(var(--d)*1px*var(--k));height:calc(var(--d)*1px*var(--k));left:calc(var(--x) - var(--d)*.5px*var(--k));}
+.space .e1{background:radial-gradient(ellipse at 60% 55%,rgba(60,200,90,.75) 0 22%,transparent 25%),radial-gradient(circle at 32% 28%,#bff5ff,#2a8bff 45%,#0a3a7a 100%);box-shadow:inset -3px -3px 6px rgba(0,0,0,.55),0 0 10px rgba(80,170,255,.6);}
+.space .e2{background:radial-gradient(circle at 32% 28%,#ffffff,#b8c4dc 55%,#5a6480 100%);box-shadow:inset -3px -3px 5px rgba(0,0,0,.5),0 0 8px rgba(200,220,255,.45);}
+@media(prefers-reduced-motion:reduce){.space .aur,.space .st,.space .spark,.space .sun,.space .sun::before,.space .orbm{animation:none}}
 </style>
 </head>
 <body>
@@ -268,12 +315,15 @@ textarea{width:100%;background:var(--card2);border:1px solid var(--stroke);borde
 
   <div class="banner">
     <div class="space" aria-hidden="true">
+      <div class="aur aur1"></div><div class="aur aur2"></div><div class="aur aur3"></div><div class="st s1"></div><div class="st s2"></div><div class="st s3"></div><i class="spark" style="left:18%;top:26px;animation-delay:0s"></i><i class="spark" style="left:37%;top:14px;animation-delay:1.2s"></i><i class="spark" style="left:61%;top:30px;animation-delay:2.1s"></i><i class="spark" style="left:78%;top:12px;animation-delay:0.6s"></i><i class="spark" style="left:88%;top:48px;animation-delay:1.7s"></i><i class="spark" style="left:46%;top:52px;animation-delay:2.6s"></i><div class="orbit o1"></div><div class="orbit o2"></div><div class="orbit o3"></div><div class="orbit o4"></div><div class="sun"></div>
       <div class="bgp bg1"></div><div class="bgp bg2"></div><div class="comet"></div>
       <div class="pl p1" style="--x:8%;--d:54"></div>
       <div class="pl p2 rg" style="--x:28%;--d:46"></div>
-      <div class="pl p3" style="--x:50%;--d:60"></div>
+      <div class="pl p3" style="--x:50%;--d:60"><span class="orbm"><i></i></span></div>
       <div class="pl p4 rg" style="--x:72%;--d:48"></div>
       <div class="pl p5" style="--x:92%;--d:56"></div>
+      <div class="pl sm e1" style="--x:17%;--d:15;--y:88"></div>
+      <div class="pl sm e2" style="--x:84%;--d:12;--y:92"></div>
       <div class="hopper"><div class="hb"></div></div>
     </div>
     <div class="brand brand-hero">
