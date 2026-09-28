@@ -301,6 +301,28 @@ textarea{width:100%;background:var(--card2);border:1px solid var(--stroke);borde
 .space .e1{background:radial-gradient(ellipse at 60% 55%,rgba(60,200,90,.75) 0 22%,transparent 25%),radial-gradient(circle at 32% 28%,#bff5ff,#2a8bff 45%,#0a3a7a 100%);box-shadow:inset -3px -3px 6px rgba(0,0,0,.55),0 0 10px rgba(80,170,255,.6);}
 .space .e2{background:radial-gradient(circle at 32% 28%,#ffffff,#b8c4dc 55%,#5a6480 100%);box-shadow:inset -3px -3px 5px rgba(0,0,0,.5),0 0 8px rgba(200,220,255,.45);}
 @media(prefers-reduced-motion:reduce){.space .aur,.space .st,.space .spark,.space .sun,.space .sun::before,.space .orbm{animation:none}}
+
+.flinks{align-items:center;flex-wrap:wrap;}
+.flinks .fl{background:none;border:none;color:var(--muted);font:inherit;font-size:12px;cursor:pointer;padding:6px 4px;position:relative;transition:color .2s;}
+.flinks .fl::after{content:'';position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--violet),var(--pink));transform:scaleX(0);transition:transform .25s;}
+.flinks .fl:hover,.flinks .fl:focus-visible{color:var(--text);outline:none;}
+.flinks .fl:hover::after,.flinks .fl:focus-visible::after{transform:scaleX(1);}
+.store{color:var(--text);font-family:inherit;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;}
+.store:hover,.store:focus-visible{transform:translateY(-2px);border-color:var(--cyan);box-shadow:0 6px 18px rgba(38,208,240,.28);outline:none;}
+#pageOv{position:fixed;inset:0;z-index:70;display:none;flex-direction:column;overflow-y:auto;background:radial-gradient(ellipse at 50% 0%,rgba(155,77,255,.3),transparent 60%),#06030f;}
+#pageOv.open{display:flex;animation:ovIn .3s ease;}
+@keyframes ovIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.ov-head{display:flex;align-items:center;gap:14px;padding:16px clamp(16px,4vw,32px);padding-inline-end:76px;border-bottom:1px solid var(--stroke);}
+.ov-back{background:var(--card);border:1px solid var(--stroke);color:var(--text);border-radius:20px;padding:8px 16px;font:inherit;font-size:13px;cursor:pointer;transition:border-color .2s;}
+.ov-back:hover{border-color:var(--cyan);}
+.ov-body{max-width:640px;width:100%;margin:0 auto;padding:clamp(24px,6vw,56px) 20px;text-align:center;}
+.ov-body .rabbit{width:96px;height:96px;margin:0 auto 18px;animation:rabbitGlow 3.2s ease-in-out infinite;}
+.ov-body h2{font-size:clamp(22px,4vw,32px);margin:0 0 10px;}
+.ov-body p{color:var(--muted);line-height:1.9;margin:0;}
+.ov-badge{display:inline-block;padding:4px 14px;border-radius:20px;background:linear-gradient(90deg,var(--violet),var(--pink));font-size:11px;font-weight:700;margin-bottom:14px;}
+.ov-chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:24px 0;}
+.ov-chips span{padding:10px 16px;border:1px dashed var(--stroke);border-radius:14px;background:var(--card);font-size:13px;}
+.ov-body .btn{max-width:260px;margin-top:8px;}
 </style>
 </head>
 <body>
@@ -521,9 +543,13 @@ textarea{width:100%;background:var(--card2);border:1px solid var(--stroke);borde
   <div class="footer">
     <div class="brand"><div class="rabbit" style="width:40px;height:40px;font-size:18px"></div>
       <div><div class="logo-fixed" style="font-size:14px">AL BLACK RABBIT HIT</div><div class="tag" data-i18n="tagline"></div></div></div>
-    <div class="flinks"><span data-i18n="f_connect"></span><span data-i18n="f_watch"></span><span data-i18n="f_play"></span><span data-i18n="f_share"></span></div>
-    <div class="stores"><div class="store">▶ Google Play</div><div class="store">🍎 App Store</div></div>
+    <div class="flinks"><button class="fl" onclick="openPage('contact')" data-i18n="f_connect"></button><button class="fl" onclick="openPage('privacy')" data-i18n="f_privacy"></button><button class="fl" onclick="openPage('share')" data-i18n="f_share"></button></div>
+    <div class="stores"><button class="store" onclick="openPage('gplay')">▶ Google Play</button><button class="store" onclick="openPage('astore')">🍎 App Store</button></div>
   </div>
+</div>
+<div id="pageOv" role="dialog" aria-modal="true" aria-labelledby="ovTitle">
+  <div class="ov-head"><button class="ov-back" id="ovBack" onclick="closePage()"></button><b id="ovTitle"></b></div>
+  <div class="ov-body" id="ovBody"></div>
 </div>
 <div class="toast" id="toast"></div>
 
@@ -570,7 +596,7 @@ const T={
  published:{ar:'تم النشر!',en:'Published!'},
  minutes_ago:{ar:'منذ 3 دقائق',en:'3 minutes ago'},
  hours_ago:{ar:'منذ ساعة',en:'an hour ago'},
- f_connect:{ar:'تواصل',en:'Connect'},f_watch:{ar:'شاهد',en:'Watch'},f_play:{ar:'العب',en:'Play'},f_share:{ar:'شارك',en:'Share'},
+ f_connect:{ar:'تواصل',en:'Connect'},f_privacy:{ar:'سياسة الخصوصية والاستخدام',en:'Privacy & Terms'},f_share:{ar:'شارك',en:'Share'},
  ai_title:{ar:'بلاك رابيت AI',en:'Black Rabbit AI'},
  ai_q1:{ar:'ما الجديد في التطبيق؟',en:"What's new in the app?"},
  ai_a1:{ar:'أهلاً بك! يمكنني مساعدتك في التنقل، الألعاب، والمزيد ✨',en:'Hi there! I can help you navigate, play games, and more ✨'},
@@ -629,7 +655,29 @@ function buildNav(){
     ).join('');
   });
 }
-function toggleLang(){lang=lang==='ar'?'en':'ar';render();}
+const PAGES={
+ contact:{title:{ar:'تواصل معنا',en:'Contact us'},text:{ar:'نجهّز واجهة للتواصل مع فريق المنصة، وسنبنيها في المرحلة القادمة.',en:'We are preparing a way to reach the platform team. It will be built in the next phase.'},items:[{ar:'نموذج مراسلة',en:'Contact form'},{ar:'الدعم والمساعدة',en:'Help & support'},{ar:'حساباتنا الرسمية',en:'Official accounts'}]},
+ share:{title:{ar:'شارك المنصة',en:'Share the platform'},text:{ar:'واجهة مشاركة المنصة مع الأصدقاء ستُبنى لاحقاً.',en:'The interface for sharing the platform with friends will be built later.'},items:[{ar:'مشاركة برابط',en:'Share by link'},{ar:'وسائل التواصل الاجتماعي',en:'Social networks'},{ar:'رمز QR',en:'QR code'}]},
+ privacy:{title:{ar:'سياسة الخصوصية والاستخدام',en:'Privacy & Terms of Use'},text:{ar:'سيُضاف النص الرسمي للسياسة وشروط الاستخدام قبل الإطلاق.',en:'The official policy and terms text will be added before launch.'},items:[{ar:'سياسة الخصوصية',en:'Privacy policy'},{ar:'شروط الاستخدام',en:'Terms of use'},{ar:'سياسة المحتوى',en:'Content policy'}]},
+ gplay:{title:{ar:'قريباً على Google Play',en:'Coming soon to Google Play'},text:{ar:'التطبيق قيد التطوير. سجّل الآن لتكون من أوائل من يعرف عند الإطلاق.',en:'The app is under development. Sign up now to be among the first to know at launch.'},cta:true},
+ astore:{title:{ar:'قريباً على App Store',en:'Coming soon to the App Store'},text:{ar:'التطبيق قيد التطوير. سجّل الآن لتكون من أوائل من يعرف عند الإطلاق.',en:'The app is under development. Sign up now to be among the first to know at launch.'},cta:true}
+};
+let openKey=null;
+function openPage(k){openKey=k;renderPage();document.getElementById('pageOv').classList.add('open');document.body.style.overflow='hidden';}
+function closePage(){openKey=null;document.getElementById('pageOv').classList.remove('open');document.body.style.overflow='';}
+function renderPage(){
+  if(!openKey)return;
+  const p=PAGES[openKey];
+  document.getElementById('ovBack').textContent=(lang==='ar'?'→ ':'← ')+(lang==='ar'?'رجوع':'Back');
+  document.getElementById('ovTitle').textContent=p.title[lang];
+  document.getElementById('ovBody').innerHTML=
+    '<div class="rabbit"></div><span class="ov-badge">'+(lang==='ar'?'قيد الإنشاء':'Coming soon')+'</span>'+
+    '<h2>'+p.title[lang]+'</h2><p>'+p.text[lang]+'</p>'+
+    (p.items?'<div class="ov-chips">'+p.items.map(i=>'<span>'+i[lang]+'</span>').join('')+'</div>':'')+
+    (p.cta?'<div class="ov-chips"></div><button class="btn btn-p" onclick="closePage();openSignup()">'+tr('signup_cta')+'</button>':'');
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closePage();});
+function toggleLang(){lang=lang==='ar'?'en':'ar';render();renderPage();}
 function openSignup(){
   focusFrame('f-welcome');
   const btns=document.querySelectorAll('#f-welcome .btn');
