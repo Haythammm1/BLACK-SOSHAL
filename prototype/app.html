@@ -333,6 +333,18 @@ textarea{width:100%;background:var(--card2);border:1px solid var(--stroke);borde
 .ov-lang{margin-inline-start:auto;}
 @media(max-width:680px){#langBtn{padding:0;width:40px;height:40px;min-height:0;justify-content:center;}#langBtn .lg-tx{display:none;}}
 @media(prefers-reduced-motion:reduce){#langBtn.swap{animation:none}}
+
+/* brand wordmark: identical order and spacing in every language, no overlap */
+.wordmark{direction:ltr;unicode-bidi:isolate;line-height:1.12;gap:.05em .4em;justify-content:center;}
+.wordmark span{transform:none;white-space:nowrap;}
+.wordmark .wm1{letter-spacing:.2em;margin-right:-.2em;}
+.wordmark .wm2{letter-spacing:.16em;margin-right:-.16em;}
+/* back-to-top arrow */
+#toTop{position:fixed;bottom:20px;inset-inline-start:20px;z-index:60;width:46px;height:46px;border-radius:50%;border:1px solid var(--cyan);background:rgba(20,12,50,.85);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 16px rgba(38,208,240,.4);opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .25s,transform .25s,box-shadow .2s;}
+#toTop.show{opacity:1;pointer-events:auto;transform:none;}
+#toTop:hover,#toTop:focus-visible{box-shadow:0 0 26px rgba(38,208,240,.75);outline:none;}
+#toTop svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+.ov-back{font-weight:700;}
 </style>
 </head>
 <body>
@@ -558,9 +570,10 @@ textarea{width:100%;background:var(--card2);border:1px solid var(--stroke);borde
   </div>
 </div>
 <div id="pageOv" role="dialog" aria-modal="true" aria-labelledby="ovTitle">
-  <div class="ov-head"><button class="ov-back" id="ovBack" onclick="closePage()"></button><b id="ovTitle"></b><button class="ov-back ov-lang" onclick="toggleLang()"><span>🌐</span> <span id="ovLangTx"></span></button></div>
+  <div class="ov-head"><button class="ov-back" id="ovBack" onclick="closePage(true)"></button><b id="ovTitle"></b><button class="ov-back ov-lang" onclick="toggleLang()"><span>🌐</span> <span id="ovLangTx"></span></button></div>
   <div class="ov-body" id="ovBody"></div>
 </div>
+<button id="toTop" onclick="toTop()" aria-label="Back to top / العودة للأعلى" title="Back to top / العودة للأعلى"><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -677,7 +690,9 @@ const PAGES={
 };
 let openKey=null;
 function openPage(k){openKey=k;renderPage();document.getElementById('pageOv').classList.add('open');document.body.style.overflow='hidden';}
-function closePage(){openKey=null;document.getElementById('pageOv').classList.remove('open');document.body.style.overflow='';}
+function closePage(toTopFlag){openKey=null;document.getElementById('pageOv').classList.remove('open');document.body.style.overflow='';if(toTopFlag===true)toTop();}
+function toTop(){window.scrollTo({top:0,behavior:'smooth'});}
+window.addEventListener('scroll',()=>{document.getElementById('toTop').classList.toggle('show',window.scrollY>400);},{passive:true});
 function renderPage(){
   if(!openKey)return;
   const p=PAGES[openKey];
