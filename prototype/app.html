@@ -232,6 +232,28 @@ textarea{width:100%;background:var(--card2);border:1px solid var(--stroke);borde
 .brand-hero .tag{color:#ffcf9e;font-size:clamp(12px,1.5vw,18px);letter-spacing:.06em;margin-top:8px;text-align:center;}
 @media(max-width:680px){.banner{--k:.72;}}
 @media(prefers-reduced-motion:reduce){.space .hopper,.space .hb,.space .comet,.wordmark span{animation:none}}
+@keyframes travel{0%{left:calc(8% - 19px*var(--k))}8.5%{left:calc(28% - 19px*var(--k))}12.5%{left:calc(28% - 19px*var(--k))}21%{left:calc(50% - 19px*var(--k))}25%{left:calc(50% - 19px*var(--k))}33.5%{left:calc(72% - 19px*var(--k))}37.5%{left:calc(72% - 19px*var(--k))}46%{left:calc(92% - 19px*var(--k))}50%{left:calc(92% - 19px*var(--k))}58.5%{left:calc(72% - 19px*var(--k))}62.5%{left:calc(72% - 19px*var(--k))}71%{left:calc(50% - 19px*var(--k))}75%{left:calc(50% - 19px*var(--k))}83.5%{left:calc(28% - 19px*var(--k))}87.5%{left:calc(28% - 19px*var(--k))}96%{left:calc(8% - 19px*var(--k))}100%{left:calc(8% - 19px*var(--k))}}
+@keyframes hopY{
+ 0%,5%{transform:translateY(0) scale(1.12,.88);animation-timing-function:cubic-bezier(.2,.75,.4,1)}
+ 36%{transform:translateY(calc(-27px*var(--k))) scale(.94,1.08) rotate(-10deg);animation-timing-function:cubic-bezier(.6,0,.85,.4)}
+ 68%{transform:translateY(0) scale(1.14,.86) rotate(6deg)}
+ 78%,100%{transform:translateY(0) scale(1) rotate(0)}
+}
+/* ---- compact hero: raise the top so the whole interface shows ---- */
+.wrap{padding-top:clamp(4px,.8vw,10px);}
+.banner{padding-top:calc(104px*var(--k));padding-bottom:clamp(12px,1.6vw,20px);gap:10px 22px;margin-bottom:16px;}
+.space .pl{top:calc(62px*var(--k));width:calc(var(--d)*.72px*var(--k));height:calc(var(--d)*.72px*var(--k));left:calc(var(--x) - var(--d)*.36px*var(--k));}
+.space .hopper{top:calc(24px*var(--k));width:calc(38px*var(--k));height:calc(38px*var(--k));left:calc(8% - 19px*var(--k));}
+.space .comet{top:calc(10px*var(--k));}
+.brand-hero{gap:clamp(12px,2vw,28px);}
+.brand-hero .rabbit{width:clamp(70px,7.2vw,108px);height:clamp(70px,7.2vw,108px);}
+.wordmark{flex-direction:row;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:0 .4em;line-height:1.05;}
+.wordmark .wm1{font-size:clamp(24px,4vw,58px);}
+.wordmark .wm2{font-size:clamp(28px,5vw,72px);}
+.brand-hero .tag{margin-top:4px;}
+.headline h1{font-size:15px;}
+.signup-cta{padding:9px 18px;margin-top:6px;}
+.nic .ring{width:50px;height:50px;}
 </style>
 </head>
 <body>
