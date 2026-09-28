@@ -9,7 +9,7 @@
 @keyframes rabbitGlow{0%,100%{filter:drop-shadow(0 0 16px rgba(155,77,255,.55)) drop-shadow(0 0 2px rgba(255,255,255,.25));}50%{filter:drop-shadow(0 0 34px rgba(239,70,214,.8)) drop-shadow(0 0 6px rgba(255,255,255,.45));}}
 @keyframes ctaPulse{0%,100%{box-shadow:0 0 16px rgba(239,70,214,.45);}50%{box-shadow:0 0 32px rgba(155,77,255,.75);}}
 .nic{position:relative;}
-.nic .ring{background-image:var(--rabbit-img);background-size:cover;background-position:center;position:relative;transition:transform .25s;}
+.nic .ring{position:relative;transition:transform .25s;}
 .nic:hover .ring{transform:scale(1.08);}
 .nic .badge{position:absolute;bottom:-3px;inset-inline-end:-3px;width:20px;height:20px;border-radius:50%;background:#0c0724;border:1.5px solid var(--c,var(--teal));display:flex;align-items:center;justify-content:center;font-size:11px;box-shadow:0 2px 6px rgba(0,0,0,.5);}
 .ring-group{width:54px;height:54px;position:relative;}
@@ -37,7 +37,24 @@ body{margin:0;font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:
   #05030f;color:var(--text);padding-bottom:40px;}
 .wrap{max-width:min(1900px,97vw);margin:0 auto;padding:clamp(10px,2vw,28px);}
 /* header banner */
-.banner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:22px;padding:clamp(26px,4.5vw,54px) clamp(14px,3vw,32px);border-bottom:1px solid var(--stroke);margin-bottom:30px;}
+.banner{position:relative;overflow:hidden;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:22px;padding:clamp(26px,4.5vw,54px) clamp(14px,3vw,32px);border-bottom:1px solid var(--stroke);margin-bottom:30px;}
+.banner::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(1.6px 1.6px at 12% 22%,#fff 99%,transparent),
+  radial-gradient(1.2px 1.2px at 28% 68%,#fff 99%,transparent),
+  radial-gradient(1.8px 1.8px at 42% 12%,#fff 99%,transparent),
+  radial-gradient(1.2px 1.2px at 58% 78%,#fff 99%,transparent),
+  radial-gradient(1.6px 1.6px at 70% 34%,#fff 99%,transparent),
+  radial-gradient(1.2px 1.2px at 85% 60%,#fff 99%,transparent),
+  radial-gradient(1.8px 1.8px at 93% 15%,#fff 99%,transparent),
+  radial-gradient(1.2px 1.2px at 8% 85%,#fff 99%,transparent),
+  radial-gradient(1.4px 1.4px at 50% 45%,#fff 99%,transparent),
+  radial-gradient(circle at 88% 25%,rgba(155,77,255,.4),transparent 46%),
+  radial-gradient(circle at 10% 75%,rgba(38,208,240,.25),transparent 42%),
+  radial-gradient(circle at 55% 90%,rgba(239,70,214,.2),transparent 40%);
+ animation:starTwinkle 5s ease-in-out infinite;}
+.banner>*{position:relative;z-index:1;}
+@keyframes starTwinkle{0%,100%{opacity:.75;}50%{opacity:1;}}
 .brand{display:flex;align-items:center;gap:12px;}
 .rabbit{border-radius:50%;background:conic-gradient(from 210deg,var(--violet),var(--cyan),var(--pink),var(--violet));display:flex;align-items:center;justify-content:center;box-shadow:0 0 25px rgba(155,77,255,.55);flex-shrink:0;background-image:var(--rabbit-img);background-size:cover;background-position:center;background-repeat:no-repeat;}
 .brand .rabbit{width:clamp(84px,9vw,132px);height:clamp(84px,9vw,132px);font-size:32px;animation:rabbitGlow 3.2s ease-in-out infinite;}
@@ -47,7 +64,7 @@ body{margin:0;font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:
 .brand .tag{color:var(--muted);font-size:12px;margin-top:2px;}
 .nav-icons{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;}
 .nic{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;width:88px;}
-.nic .ring{width:54px;height:54px;border-radius:50%;border:2px solid var(--c,var(--teal));display:flex;align-items:center;justify-content:center;font-size:22px;background:rgba(255,255,255,.03);}
+.nic .ring{width:54px;height:54px;border-radius:50%;border:2px solid var(--c,var(--teal));display:flex;align-items:center;justify-content:center;font-size:22px;background-color:rgba(255,255,255,.03);background-image:var(--rabbit-img);background-size:cover;background-position:center;background-repeat:no-repeat;}
 .nic b{font-size:12px;}
 .nic span{font-size:10px;color:var(--muted);text-align:center;}
 .headline{text-align:end;}
@@ -67,10 +84,6 @@ body{margin:0;font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:
 .fh .ic{width:26px;height:26px;border-radius:50%;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:12px;cursor:pointer;}
 .status{display:flex;justify-content:space-between;padding:6px 12px;font-size:11px;color:var(--muted);}
 .fb{flex:1;overflow-y:auto;padding:10px;font-size:12px;}
-.fnav{display:flex;justify-content:space-around;align-items:flex-end;margin:0 8px 8px;padding:8px 6px 6px;border-radius:22px;background:linear-gradient(135deg,rgba(155,77,255,.16),rgba(38,208,240,.10));border:1px solid var(--stroke);}
-.fnav div{width:26px;height:26px;border-radius:50%;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:12px;cursor:pointer;transition:transform .2s;}
-.fnav div:hover{transform:translateY(-3px);}
-.fnav div.plus{width:36px;height:36px;margin-top:-16px;background:linear-gradient(135deg,var(--violet),var(--pink));border:2px solid #0c0724;box-shadow:0 0 16px var(--pink);font-size:16px;}
 .btn{border:none;border-radius:12px;padding:10px;font-size:12px;font-weight:700;cursor:pointer;width:100%;}
 .btn-p{background:linear-gradient(90deg,var(--violet),var(--pink));color:#fff;}
 .btn-o{background:transparent;border:1px solid var(--stroke);color:var(--text);}
@@ -164,6 +177,17 @@ textarea{width:100%;background:var(--card2);border:1px solid var(--stroke);borde
   .wrap{padding:14px 0 14px 14px;}
 }
 
+.fnav{display:flex;justify-content:space-around;align-items:flex-end;margin:0 8px 8px;padding:8px 4px 8px;border-radius:24px;background:linear-gradient(135deg,rgba(155,77,255,.18),rgba(38,208,240,.10));border:1px solid var(--stroke);}
+.fnav .ni{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;color:var(--muted);position:relative;padding-top:2px;transition:transform .2s,color .2s;}
+.fnav .ni svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+.fnav .ni .lb{font-size:8px;line-height:1;white-space:nowrap;}
+.fnav .ni:hover{transform:translateY(-3px);color:var(--text);}
+.fnav .ni.on{color:var(--cyan);}
+.fnav .ni.on svg{filter:drop-shadow(0 0 4px var(--cyan));}
+.fnav .ni.on::after{content:'';position:absolute;bottom:-5px;width:14px;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--cyan),var(--pink));box-shadow:0 0 8px var(--cyan);}
+.fnav .ni.plus{margin-top:-22px;color:var(--text);}
+.fnav .orb{position:relative;width:42px;height:42px;border-radius:50%;background-image:var(--rabbit-img);background-size:cover;background-position:center;border:2px solid #0c0724;box-shadow:0 0 0 2px var(--pink),0 0 18px var(--pink);animation:rabbitGlow 3.2s ease-in-out infinite;}
+.fnav .orb b{position:absolute;bottom:-4px;inset-inline-end:-4px;width:16px;height:16px;border-radius:50%;background:linear-gradient(135deg,var(--violet),var(--pink));color:#fff;font-size:13px;line-height:15px;text-align:center;border:1.5px solid #0c0724;}
 </style>
 </head>
 <body>
@@ -181,7 +205,7 @@ textarea{width:100%;background:var(--card2);border:1px solid var(--stroke);borde
     <div class="nav-icons">
       <div class="nic" onclick="focusFrame('f-messages')"><div class="ring" style="--c:var(--teal)"><span class="badge">💬</span></div><b data-i18n="nav_chat"></b><span data-i18n="nav_chat_sub"></span></div>
       <div class="nic" onclick="focusFrame('f-reels')"><div class="ring" style="--c:var(--violet)"><span class="badge">🎬</span></div><b data-i18n="nav_reels"></b><span data-i18n="nav_reels_sub"></span></div>
-      <div class="nic" onclick="focusFrame('f-video')"><div class="ring" style="--c:var(--pink)"><span class="badge">📺</span></div><b data-i18n="nav_video"></b><span data-i18n="nav_video_sub"></span></div>
+      <div class="nic" onclick="focusFrame('f-ai')"><div class="ring" style="--c:var(--pink)"><span class="badge">🤖</span></div><b data-i18n="nav_video"></b><span data-i18n="nav_video_sub"></span></div>
       <div class="nic" onclick="focusFrame('f-games')"><div class="ring" style="--c:var(--cyan)"><span class="badge">🎮</span></div><b data-i18n="nav_games"></b><span data-i18n="nav_games_sub"></span></div>
       <div class="nic" onclick="focusFrame('f-home')">
         <div class="ring-group">
@@ -195,7 +219,7 @@ textarea{width:100%;background:var(--card2);border:1px solid var(--stroke);borde
     <div class="headline">
       <h1 data-i18n="headline"></h1>
       <div class="logo-fixed">AL BLACK RABBIT HIT</div>
-      <button class="signup-cta" onclick="openSignup()"><span class="sc-ic">💻📱</span><span data-i18n="signup_cta"></span></button>
+      <button class="signup-cta" onclick="openSignup()"><span class="sc-ic rabbit" style="width:22px;height:22px;display:inline-block"></span><span data-i18n="signup_cta"></span></button>
     </div>
   </div>
 
@@ -230,11 +254,7 @@ textarea{width:100%;background:var(--card2);border:1px solid var(--stroke);borde
           <div class="stories" id="storiesRow"></div>
           <div id="feedRow"></div>
         </div>
-        <div class="fnav">
-          <div onclick="focusFrame('f-home')">🏠</div><div onclick="focusFrame('f-video')">🔍</div>
-          <div class="plus" onclick="focusFrame('f-create')">➕</div>
-          <div onclick="focusFrame('f-messages')">✉️</div><div onclick="focusFrame('f-profile')">👤</div>
-        </div>
+        <div class="fnav" data-active="home"></div>
       </div>
       <div class="cap" data-i18n="cap_home"></div>
     </div>
@@ -248,11 +268,7 @@ textarea{width:100%;background:var(--card2);border:1px solid var(--stroke);borde
             <div class="rcap">@Sara_hit · <span data-i18n="follow"></span><br><span data-i18n="reel_caption"></span></div>
           </div>
         </div>
-        <div class="fnav">
-          <div onclick="focusFrame('f-home')">🏠</div><div onclick="focusFrame('f-video')">🔍</div>
-          <div class="plus" onclick="focusFrame('f-create')">➕</div>
-          <div onclick="focusFrame('f-messages')">✉️</div><div onclick="focusFrame('f-profile')">👤</div>
-        </div>
+        <div class="fnav" data-active="discover"></div>
       </div>
       <div class="cap" data-i18n="cap_reels"></div>
     </div>
@@ -267,11 +283,7 @@ textarea{width:100%;background:var(--card2);border:1px solid var(--stroke);borde
           <div style="margin-top:10px;font-size:10px;color:var(--muted)" data-i18n="v_suggested"></div>
           <div class="vgrid" id="videoGrid"></div>
         </div>
-        <div class="fnav">
-          <div onclick="focusFrame('f-home')">🏠</div><div onclick="focusFrame('f-video')">🔍</div>
-          <div class="plus" onclick="focusFrame('f-create')">➕</div>
-          <div onclick="focusFrame('f-messages')">✉️</div><div onclick="focusFrame('f-profile')">👤</div>
-        </div>
+        <div class="fnav" data-active="discover"></div>
       </div>
       <div class="cap" data-i18n="cap_video"></div>
     </div>
@@ -284,11 +296,7 @@ textarea{width:100%;background:var(--card2);border:1px solid var(--stroke);borde
           <div class="chips"><span data-i18n="c_sport"></span><span data-i18n="c_adv"></span><span data-i18n="c_fav"></span><span data-i18n="c_all"></span></div>
           <div class="ggrid" id="gamesGrid"></div>
         </div>
-        <div class="fnav">
-          <div onclick="focusFrame('f-home')">🏠</div><div onclick="focusFrame('f-video')">🔍</div>
-          <div class="plus" onclick="focusFrame('f-create')">➕</div>
-          <div onclick="focusFrame('f-messages')">✉️</div><div onclick="focusFrame('f-profile')">👤</div>
-        </div>
+        <div class="fnav" data-active=""></div>
       </div>
       <div class="cap" data-i18n="cap_games"></div>
     </div>
@@ -329,11 +337,7 @@ textarea{width:100%;background:var(--card2);border:1px solid var(--stroke);borde
           <div class="ptabs"><span data-i18n="pt_following"></span><span data-i18n="pt_media"></span><span data-i18n="pt_posts"></span></div>
           <div class="cgrid" id="profileGrid"></div>
         </div>
-        <div class="fnav">
-          <div onclick="focusFrame('f-home')">🏠</div><div onclick="focusFrame('f-video')">🔍</div>
-          <div class="plus" onclick="focusFrame('f-create')">➕</div>
-          <div onclick="focusFrame('f-messages')">✉️</div><div onclick="focusFrame('f-profile')">👤</div>
-        </div>
+        <div class="fnav" data-active="profile"></div>
       </div>
       <div class="cap" data-i18n="cap_profile"></div>
     </div>
@@ -369,6 +373,18 @@ textarea{width:100%;background:var(--card2);border:1px solid var(--stroke);borde
       </div>
       <div class="cap" data-i18n="cap_notifications"></div>
     </div>
+
+    <div class="fcol">
+      <div class="frame" id="f-ai">
+        <div class="fh"><div class="rabbit" style="width:24px;height:24px"></div><div style="font-size:11px;font-weight:700" data-i18n="ai_title"></div><div class="ic">✨</div></div>
+        <div class="fb">
+          <div class="bubble out" data-i18n="ai_q1"></div>
+          <div class="bubble in" data-i18n="ai_a1"></div>
+        </div>
+        <div class="cinput"><div class="rabbit" style="width:22px;height:22px"></div><input data-i18n-ph="ai_ph"><div class="ic">➤</div></div>
+      </div>
+      <div class="cap" data-i18n="cap_ai"></div>
+    </div>
   </div>
 
   <div class="footer">
@@ -386,7 +402,7 @@ const T={
  tagline:{ar:'أكثر من منصة .. عالمك الرقمي',en:'More than a platform .. your digital world'},
  nav_chat:{ar:'محادثات',en:'Chat'},nav_chat_sub:{ar:'تواصل بلا حدود',en:'Connect without limits'},
  nav_reels:{ar:'فيديوهات قصيرة',en:'Short Videos'},nav_reels_sub:{ar:'عبّر عن نفسك',en:'Express yourself'},
- nav_video:{ar:'فيديو',en:'Video'},nav_video_sub:{ar:'شاهد واستمتع',en:'Watch and enjoy'},
+ nav_video:{ar:'بلاك رابيت AI',en:'Black Rabbit AI'},nav_video_sub:{ar:'اسأل البلاك رابيت',en:'Ask Black Rabbit'},
  nav_games:{ar:'ألعاب',en:'Games'},nav_games_sub:{ar:'العب وتحدَّ',en:'Play and challenge'},
  nav_community:{ar:'مجتمع',en:'Community'},nav_community_sub:{ar:'اصنع صداقات جديدة',en:'Make new friends'},
  headline:{ar:'معاً.. نصنع مستقبلاً أفضل',en:'Together.. building a better future'},
@@ -424,7 +440,13 @@ const T={
  minutes_ago:{ar:'منذ 3 دقائق',en:'3 minutes ago'},
  hours_ago:{ar:'منذ ساعة',en:'an hour ago'},
  f_connect:{ar:'تواصل',en:'Connect'},f_watch:{ar:'شاهد',en:'Watch'},f_play:{ar:'العب',en:'Play'},f_share:{ar:'شارك',en:'Share'},
+ ai_title:{ar:'بلاك رابيت AI',en:'Black Rabbit AI'},
+ ai_q1:{ar:'ما الجديد في التطبيق؟',en:"What's new in the app?"},
+ ai_a1:{ar:'أهلاً بك! يمكنني مساعدتك في التنقل، الألعاب، والمزيد ✨',en:'Hi there! I can help you navigate, play games, and more ✨'},
+ ai_ph:{ar:'اسأل البلاك رابيت...',en:'Ask Black Rabbit...'},
+ cap_ai:{ar:'بلاك رابيت AI',en:'Black Rabbit AI'},
  signup_cta:{ar:'سجّل الآن',en:'Sign Up Now'},
+ b_home:{ar:'الرئيسية',en:'Home'},b_discover:{ar:'اكتشف',en:'Discover'},b_create:{ar:'إنشاء',en:'Create'},b_messages:{ar:'الرسائل',en:'Messages'},b_profile:{ar:'حسابي',en:'Me'},
  onb_chat:{ar:'دردشة مباشرة',en:'Live chat'},
  onb_reels:{ar:'Reels ملهمة',en:'Inspiring reels'},
  onb_games:{ar:'ألعاب ممتعة',en:'Fun games'},
@@ -459,6 +481,22 @@ function render(){
   document.getElementById('notifTabs').innerHTML=notifTabs.map((t,i)=>`<span class="${i===3?'on':''}">${t[lang]}</span>`).join('');
   document.getElementById('notifList').innerHTML=notifs.map(n=>`<div class="nitem"><div class="av">${n.av}</div><div class="meta">${n.n[lang]}<span>${tr(n.t)}</span></div></div>`).join('');
 }
+const NAV_ICONS={
+ home:'<svg viewBox="0 0 24 24"><ellipse cx="9.2" cy="3.8" rx="1.3" ry="2.8" transform="rotate(-12 9.2 3.8)"/><ellipse cx="14.8" cy="3.8" rx="1.3" ry="2.8" transform="rotate(12 14.8 3.8)"/><path d="M4 12.5 12 7l8 5.5V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M10 21v-5h4v5"/></svg>',
+ discover:'<svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/><path d="M10.5 7.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9z" fill="currentColor" stroke="none"/></svg>',
+ messages:'<svg viewBox="0 0 24 24"><ellipse cx="8.5" cy="4.4" rx="1.2" ry="2.6" transform="rotate(-10 8.5 4.4)"/><ellipse cx="15.5" cy="4.4" rx="1.2" ry="2.6" transform="rotate(10 15.5 4.4)"/><path d="M5 8h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-8l-4 3v-3H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2z"/><circle cx="9" cy="13.5" r=".9" fill="currentColor" stroke="none"/><circle cx="15" cy="13.5" r=".9" fill="currentColor" stroke="none"/></svg>',
+ profile:'<svg viewBox="0 0 24 24"><ellipse cx="9" cy="5" rx="1.6" ry="4" transform="rotate(-8 9 5)"/><ellipse cx="15" cy="5" rx="1.6" ry="4" transform="rotate(8 15 5)"/><circle cx="12" cy="14.5" r="6.5"/><circle cx="9.8" cy="13.5" r=".9" fill="currentColor" stroke="none"/><circle cx="14.2" cy="13.5" r=".9" fill="currentColor" stroke="none"/><path d="M11 16.5q1 .9 2 0"/></svg>'
+};
+const NAV_ITEMS=[['home','f-home','b_home'],['discover','f-video','b_discover'],['create','f-create','b_create'],['messages','f-messages','b_messages'],['profile','f-profile','b_profile']];
+function buildNav(){
+  document.querySelectorAll('.fnav').forEach(n=>{
+    const act=n.dataset.active;
+    n.innerHTML=NAV_ITEMS.map(([k,t,l])=>k==='create'
+      ?`<div class="ni plus" onclick="focusFrame('${t}')"><span class="orb"><b>+</b></span><span class="lb" data-i18n="${l}"></span></div>`
+      :`<div class="ni ${act===k?'on':''}" onclick="focusFrame('${t}')">${NAV_ICONS[k]}<span class="lb" data-i18n="${l}"></span></div>`
+    ).join('');
+  });
+}
 function toggleLang(){lang=lang==='ar'?'en':'ar';render();}
 function openSignup(){
   focusFrame('f-welcome');
@@ -482,6 +520,7 @@ function publishPost(){
   showToast('published');
   focusFrame('f-home');
 }
+buildNav();
 render();
 </script>
 </body>
