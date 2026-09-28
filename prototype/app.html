@@ -190,6 +190,48 @@ textarea{width:100%;background:var(--card2);border:1px solid var(--stroke);borde
 .fnav .orb{position:relative;width:42px;height:42px;border-radius:50%;background-image:var(--rabbit-img);background-size:cover;background-position:center;border:2px solid #0c0724;box-shadow:0 0 0 2px var(--pink),0 0 18px var(--pink);animation:rabbitGlow 3.2s ease-in-out infinite;}
 .fnav .orb b{position:absolute;bottom:-4px;inset-inline-end:-4px;width:16px;height:16px;border-radius:50%;background:linear-gradient(135deg,var(--violet),var(--pink));color:#fff;font-size:13px;line-height:15px;text-align:center;border:1.5px solid #0c0724;}
 @keyframes hop{0%,100%{transform:translateY(0)}35%{transform:translateY(-7px) rotate(-6deg)}65%{transform:translateY(-2px) rotate(4deg)}}
+@keyframes travel{0%{left:calc(8% - 23px*var(--k))}8.5%{left:calc(28% - 23px*var(--k))}12.5%{left:calc(28% - 23px*var(--k))}21%{left:calc(50% - 23px*var(--k))}25%{left:calc(50% - 23px*var(--k))}33.5%{left:calc(72% - 23px*var(--k))}37.5%{left:calc(72% - 23px*var(--k))}46%{left:calc(92% - 23px*var(--k))}50%{left:calc(92% - 23px*var(--k))}58.5%{left:calc(72% - 23px*var(--k))}62.5%{left:calc(72% - 23px*var(--k))}71%{left:calc(50% - 23px*var(--k))}75%{left:calc(50% - 23px*var(--k))}83.5%{left:calc(28% - 23px*var(--k))}87.5%{left:calc(28% - 23px*var(--k))}96%{left:calc(8% - 23px*var(--k))}100%{left:calc(8% - 23px*var(--k))}}
+@keyframes hopY{
+ 0%,5%{transform:translateY(0) scale(1.12,.88);animation-timing-function:cubic-bezier(.2,.75,.4,1)}
+ 36%{transform:translateY(calc(-46px*var(--k))) scale(.94,1.08) rotate(-10deg);animation-timing-function:cubic-bezier(.6,0,.85,.4)}
+ 68%{transform:translateY(0) scale(1.14,.86) rotate(6deg)}
+ 78%,100%{transform:translateY(0) scale(1) rotate(0)}
+}
+@keyframes fireShift{0%{background-position:0 0}100%{background-position:0 100%}}
+@keyframes flame{
+ 0%,100%{filter:drop-shadow(0 0 12px rgba(255,140,0,.75)) drop-shadow(0 3px 0 rgba(110,20,0,.65))}
+ 50%{filter:drop-shadow(0 0 28px rgba(255,70,0,.95)) drop-shadow(0 3px 0 rgba(110,20,0,.65))}
+}
+@keyframes comet{
+ 0%{opacity:0;transform:translate(0,0) rotate(-14deg)}
+ 4%{opacity:1}
+ 14%{opacity:0;transform:translate(-60vw,14vw) rotate(-14deg)}
+ 100%{opacity:0}
+}
+.banner{--k:1;padding-top:calc(190px*var(--k));}
+.banner>.space{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
+.space .pl{position:absolute;border-radius:50%;left:calc(var(--x) - var(--d)*.5px*var(--k));top:calc(118px*var(--k));width:calc(var(--d)*1px*var(--k));height:calc(var(--d)*1px*var(--k));}
+.space .p1{background:radial-gradient(circle at 32% 28%,#fff1a8,#ff9a1f 32%,#e0341a 62%,#5a0a08 100%);box-shadow:0 0 22px rgba(255,120,20,.65);}
+.space .p2{background:radial-gradient(circle at 32% 28%,#e7c8ff,#9b4dff 45%,#3a1470 100%);box-shadow:0 0 20px rgba(155,77,255,.6);}
+.space .p3{background:radial-gradient(circle at 32% 28%,#c8fbff,#26d0f0 45%,#0a4a78 100%);box-shadow:0 0 20px rgba(38,208,240,.55);}
+.space .p4{background:radial-gradient(circle at 32% 28%,#ffd0f0,#ef46d6 45%,#6a1360 100%);box-shadow:0 0 20px rgba(239,70,214,.55);}
+.space .p5{background:radial-gradient(circle at 32% 28%,#fff6c2,#ffc233 45%,#a3540a 100%);box-shadow:0 0 22px rgba(255,190,50,.6);}
+.space .rg::after{content:'';position:absolute;left:-32%;right:-32%;top:38%;height:24%;border:2px solid rgba(255,255,255,.5);border-radius:50%;transform:rotate(-18deg);}
+.space .bgp{position:absolute;border-radius:50%;opacity:.32;}
+.space .bg1{left:-70px;bottom:-120px;width:280px;height:280px;background:radial-gradient(circle at 35% 30%,#ff9a1f,#c2261a 55%,#2a0505 100%);}
+.space .bg2{right:-80px;bottom:-130px;width:300px;height:300px;background:radial-gradient(circle at 35% 30%,#b58cff,#5a2bb0 55%,#120626 100%);}
+.space .hopper{position:absolute;top:calc(72px*var(--k));width:calc(46px*var(--k));height:calc(46px*var(--k));left:calc(8% - 23px*var(--k));animation:travel 17.6s linear infinite;}
+.space .hb{width:100%;height:100%;border-radius:50%;background-image:var(--rabbit-img);background-size:cover;background-position:center;box-shadow:0 0 16px rgba(255,150,30,.85),0 0 0 2px rgba(255,220,150,.9);transform-origin:50% 100%;animation:hopY 2.2s infinite;}
+.space .comet{position:absolute;top:calc(14px*var(--k));right:2%;width:120px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,#fff);opacity:0;animation:comet 9s linear infinite 2s;}
+.brand-hero{flex:1 1 100%;justify-content:center;gap:clamp(16px,2.6vw,40px);}
+.brand-hero .rabbit{width:clamp(96px,10vw,160px);height:clamp(96px,10vw,160px);}
+.wordmark{display:flex;flex-direction:column;align-items:center;text-align:center;line-height:1.02;font-family:Impact,"Arial Black","Segoe UI",sans-serif;font-weight:900;text-transform:uppercase;}
+.wordmark span{display:block;transform:scaleX(1.1);background-size:100% 220%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:fireShift 2.6s ease-in-out infinite alternate,flame 2.2s ease-in-out infinite;}
+.wordmark .wm1{font-size:clamp(34px,6vw,88px);letter-spacing:.16em;background-image:linear-gradient(180deg,#fff7b8 0%,#ffd23f 26%,#ff9a1f 55%,#ff5a1f 80%,#ff8a2a 100%);}
+.wordmark .wm2{font-size:clamp(42px,8vw,118px);letter-spacing:.12em;background-image:linear-gradient(180deg,#ffd166 0%,#ff8a1a 28%,#ff3b1f 58%,#d10f0f 82%,#ff5a1f 100%);}
+.brand-hero .tag{color:#ffcf9e;font-size:clamp(12px,1.5vw,18px);letter-spacing:.06em;margin-top:8px;text-align:center;}
+@media(max-width:680px){.banner{--k:.72;}}
+@media(prefers-reduced-motion:reduce){.space .hopper,.space .hb,.space .comet,.wordmark span{animation:none}}
 </style>
 </head>
 <body>
@@ -203,10 +245,19 @@ textarea{width:100%;background:var(--card2);border:1px solid var(--stroke);borde
 <div class="wrap">
 
   <div class="banner">
-    <div class="brand">
+    <div class="space" aria-hidden="true">
+      <div class="bgp bg1"></div><div class="bgp bg2"></div><div class="comet"></div>
+      <div class="pl p1" style="--x:8%;--d:54"></div>
+      <div class="pl p2 rg" style="--x:28%;--d:46"></div>
+      <div class="pl p3" style="--x:50%;--d:60"></div>
+      <div class="pl p4 rg" style="--x:72%;--d:48"></div>
+      <div class="pl p5" style="--x:92%;--d:56"></div>
+      <div class="hopper"><div class="hb"></div></div>
+    </div>
+    <div class="brand brand-hero">
       <div class="rabbit"></div>
       <div>
-        <div class="logo-fixed">AL BLACK<br><span class="hit">RABBIT HIT</span></div>
+        <div class="wordmark"><span class="wm1">AL BLACK</span><span class="wm2">RABBIT HIT</span></div>
         <div class="tag" data-i18n="tagline"></div>
       </div>
     </div>
