@@ -380,6 +380,44 @@ textarea{width:100%;background:var(--card2);border:1px solid var(--stroke);borde
  .signup-cta .sc-ic{width:16px;height:16px;}
  .row{margin-bottom:14px;}
 }
+
+.vswitch{display:flex;gap:6px;padding:8px 10px 0;}
+.vsw{flex:1;border:1px solid var(--stroke);background:var(--card2);color:var(--muted);border-radius:10px;padding:6px 4px;font-size:10px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s;}
+.vsw.on{background:linear-gradient(90deg,var(--violet),var(--pink));color:#fff;border-color:transparent;}
+.fb.found{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px;}
+.found-badge{display:inline-block;padding:3px 12px;border-radius:14px;background:linear-gradient(90deg,var(--violet),var(--cyan));font-size:8px;font-weight:700;}
+.found-rb{width:56px;height:56px;margin:4px 0;}
+.fb.found p{color:var(--muted);font-size:10px;line-height:1.8;margin:0 0 4px;}
+
+.clauses{text-align:start;margin-top:18px;display:flex;flex-direction:column;gap:14px;}
+.clause b{display:block;font-size:14px;margin-bottom:4px;}
+.clause p{color:var(--muted);font-size:13px;line-height:1.8;margin:0;}
+.disclaimer{margin-top:22px;font-size:11px;color:var(--muted);border-top:1px solid var(--stroke);padding-top:12px;}
+.share-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:18px;}
+.sbtn{padding:10px 18px;border-radius:14px;border:1px solid var(--stroke);background:var(--card);color:var(--text);font-size:13px;font-family:inherit;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:.2s;}
+.sbtn:hover{border-color:var(--cyan);transform:translateY(-2px);}
+
+/* ============================================================
+   AD SLOT FOUNDATION (Google AdSense) \u2014 STRUCTURE ONLY, INERT.
+   No AdSense script is loaded anywhere in this file, no publisher
+   ID exists, and no network request to any ad network is made.
+   .ad-slot is display:none, so it has zero visual footprint and
+   zero effect on the current design until someone deliberately
+   flips it on after: (1) the site is live at a real domain,
+   (2) it has been reviewed and approved by Google AdSense, and
+   (3) the Privacy Policy explicitly discloses ads/cookies.
+   ALLOWED placements: the quiet end of a passive content list
+   (feed, suggested grid, notification list, profile grid) \u2014
+   never mid-content, never disguised as a post, never stacked
+   near a like/comment/follow button where a mis-tap is likely.
+   FORBIDDEN \u2014 never place .ad-slot inside these, ever:
+     #f-messages  (private chat \u2014 list or open conversation)
+     #f-ai        (the live Black Rabbit AI conversation)
+     #f-games     (the gameplay area itself)
+     #f-create    (the active post-composition flow)
+   ============================================================ */
+.ad-slot{display:none;margin:14px 0 2px;padding:10px 8px;border:1px dashed var(--stroke);border-radius:12px;text-align:center;font-size:8px;letter-spacing:.04em;color:var(--muted);}
+.ad-slot::before{content:attr(data-label);}
 </style>
 </head>
 <body>
@@ -414,7 +452,7 @@ textarea{width:100%;background:var(--card2);border:1px solid var(--stroke);borde
     </div>
     <div class="nav-icons">
       <div class="nic" onclick="focusFrame('f-messages')"><div class="ring" style="--c:var(--teal)"><span class="badge">💬</span></div><b data-i18n="nav_chat"></b><span data-i18n="nav_chat_sub"></span></div>
-      <div class="nic" onclick="focusFrame('f-reels')"><div class="ring" style="--c:var(--violet)"><span class="badge">🎬</span></div><b data-i18n="nav_reels"></b><span data-i18n="nav_reels_sub"></span></div>
+      <div class="nic" onclick="switchVideoTab('reels');focusFrame('f-video')"><div class="ring" style="--c:var(--violet)"><span class="badge">🎬</span></div><b data-i18n="nav_reels"></b><span data-i18n="nav_reels_sub"></span></div>
       <div class="nic" onclick="focusFrame('f-ai')"><div class="ring" style="--c:var(--pink)"><span class="badge">🤖</span></div><b data-i18n="nav_video"></b><span data-i18n="nav_video_sub"></span></div>
       <div class="nic" onclick="focusFrame('f-games')"><div class="ring" style="--c:var(--cyan)"><span class="badge">🎮</span></div><b data-i18n="nav_games"></b><span data-i18n="nav_games_sub"></span></div>
       <div class="nic" onclick="focusFrame('f-home')">
@@ -463,6 +501,7 @@ textarea{width:100%;background:var(--card2);border:1px solid var(--stroke);borde
         <div class="fb">
           <div class="stories" id="storiesRow"></div>
           <div id="feedRow"></div>
+          <div class="ad-slot" data-label="Ad slot — disabled" data-i18n-label="ad_label"></div>
         </div>
         <div class="fnav" data-active="home"></div>
       </div>
@@ -470,28 +509,25 @@ textarea{width:100%;background:var(--card2);border:1px solid var(--stroke);borde
     </div>
 
     <div class="fcol">
-      <div class="frame" id="f-reels">
-        <div class="fh"><div class="rtabs"><b data-i18n="reels_all"></b><span data-i18n="reels_discover"></span></div><div class="ic">📷</div></div>
-        <div class="fb" style="padding:0;display:flex;">
-          <div class="reel">
-            <div class="rside"><div>❤️</div><div>💬</div><div>↗️</div></div>
-            <div class="rcap">@Sara_hit · <span data-i18n="follow"></span><br><span data-i18n="reel_caption"></span></div>
-          </div>
-        </div>
-        <div class="fnav" data-active="discover"></div>
-      </div>
-      <div class="cap" data-i18n="cap_reels"></div>
-    </div>
-
-    <div class="fcol">
       <div class="frame" id="f-video">
         <div class="fh"><div class="rabbit"></div><div class="logo-fixed">AL BLACK RABBIT HIT</div><div class="ic">🔍</div></div>
-        <div class="fb">
+        <div class="vswitch">
+          <button class="vsw on" data-tab="video" onclick="switchVideoTab('video')" data-i18n="vt_long"></button>
+          <button class="vsw" data-tab="reels" onclick="switchVideoTab('reels')" data-i18n="vt_short"></button>
+        </div>
+        <div class="fb" id="videoTabVideo">
           <div class="vtabs"><span class="on" data-i18n="v_all"></span><span data-i18n="v_top"></span><span data-i18n="v_explore"></span><span data-i18n="v_music"></span></div>
           <div class="vfeat"><div class="pimg"></div><div class="vt"><b data-i18n="video_feat"></b><div style="color:var(--muted);font-size:9px">2025</div>
           <button class="btn btn-p" style="margin-top:6px" onclick="showToast('toast_play')" data-i18n="watch_now"></button></div></div>
           <div style="margin-top:10px;font-size:10px;color:var(--muted)" data-i18n="v_suggested"></div>
           <div class="vgrid" id="videoGrid"></div>
+          <div class="ad-slot" data-label="Ad slot — disabled" data-i18n-label="ad_label"></div>
+        </div>
+        <div class="fb" id="videoTabReels" style="display:none;padding:0;">
+          <div class="reel">
+            <div class="rside"><div>❤️</div><div>💬</div><div>↗️</div></div>
+            <div class="rcap">@Sara_hit · <span data-i18n="follow"></span><br><span data-i18n="reel_caption"></span></div>
+          </div>
         </div>
         <div class="fnav" data-active="discover"></div>
       </div>
@@ -501,10 +537,11 @@ textarea{width:100%;background:var(--card2);border:1px solid var(--stroke);borde
     <div class="fcol">
       <div class="frame" id="f-games">
         <div class="fh"><div style="font-size:12px;font-weight:700" data-i18n="games_title"></div><div class="ic">🎮</div></div>
-        <div class="fb">
-          <div class="gbanner"><b data-i18n="games_play_now"></b><br><span data-i18n="games_discover"></span></div>
-          <div class="chips"><span data-i18n="c_sport"></span><span data-i18n="c_adv"></span><span data-i18n="c_fav"></span><span data-i18n="c_all"></span></div>
-          <div class="ggrid" id="gamesGrid"></div>
+        <div class="fb found">
+          <span class="found-badge" data-i18n="found_badge"></span>
+          <div class="rabbit found-rb"></div>
+          <p data-i18n="games_found_text"></p>
+          <div class="chips" style="justify-content:center"><span data-i18n="c_sport"></span><span data-i18n="c_adv"></span><span data-i18n="c_fav"></span></div>
         </div>
         <div class="fnav" data-active=""></div>
       </div>
@@ -546,6 +583,7 @@ textarea{width:100%;background:var(--card2);border:1px solid var(--stroke);borde
           </div>
           <div class="ptabs"><span data-i18n="pt_following"></span><span data-i18n="pt_media"></span><span data-i18n="pt_posts"></span></div>
           <div class="cgrid" id="profileGrid"></div>
+          <div class="ad-slot" data-label="Ad slot — disabled" data-i18n-label="ad_label"></div>
         </div>
         <div class="fnav" data-active="profile"></div>
       </div>
@@ -579,6 +617,7 @@ textarea{width:100%;background:var(--card2);border:1px solid var(--stroke);borde
         <div class="fb">
           <div class="ntabs" id="notifTabs"></div>
           <div id="notifList"></div>
+          <div class="ad-slot" data-label="Ad slot — disabled" data-i18n-label="ad_label"></div>
         </div>
       </div>
       <div class="cap" data-i18n="cap_notifications"></div>
@@ -587,11 +626,12 @@ textarea{width:100%;background:var(--card2);border:1px solid var(--stroke);borde
     <div class="fcol">
       <div class="frame" id="f-ai">
         <div class="fh"><div class="rabbit" style="width:24px;height:24px"></div><div style="font-size:11px;font-weight:700" data-i18n="ai_title"></div><div class="ic">✨</div></div>
-        <div class="fb">
-          <div class="bubble out" data-i18n="ai_q1"></div>
-          <div class="bubble in" data-i18n="ai_a1"></div>
+        <div class="fb found">
+          <span class="found-badge" data-i18n="found_badge"></span>
+          <div class="rabbit found-rb"></div>
+          <p data-i18n="ai_found_text"></p>
         </div>
-        <div class="cinput"><div class="rabbit" style="width:22px;height:22px"></div><input data-i18n-ph="ai_ph"><div class="ic">➤</div></div>
+        <div class="cinput" style="opacity:.5;pointer-events:none"><div class="rabbit" style="width:22px;height:22px"></div><input data-i18n-ph="ai_ph" disabled><div class="ic">➤</div></div>
       </div>
       <div class="cap" data-i18n="cap_ai"></div>
     </div>
@@ -626,7 +666,7 @@ const T={
  cap_welcome:{ar:'شاشة الترحيب',en:'Welcome Screen'},
  cap_home:{ar:'الصفحة الرئيسية',en:'Home Feed'},
  cap_reels:{ar:'فيديوهات قصيرة (Reels)',en:'Short Videos (Reels)'},
- cap_video:{ar:'صفحة الفيديو',en:'Video Page'},
+ cap_video:{ar:'الفيديو وReels',en:'Video & Reels'},
  cap_games:{ar:'قسم الألعاب',en:'Games Section'},
  cap_messages:{ar:'المحادثات',en:'Messages'},
  cap_profile:{ar:'الملف الشخصي',en:'Profile'},
@@ -655,6 +695,25 @@ const T={
  minutes_ago:{ar:'منذ 3 دقائق',en:'3 minutes ago'},
  hours_ago:{ar:'منذ ساعة',en:'an hour ago'},
  f_connect:{ar:'تواصل',en:'Connect'},f_privacy:{ar:'سياسة الخصوصية والاستخدام',en:'Privacy & Terms'},f_share:{ar:'شارك',en:'Share'},
+ vt_long:{ar:'فيديو',en:'Video'},vt_short:{ar:'Reels',en:'Reels'},
+ found_badge:{ar:'الأساس جاهز — الميزة الكاملة قادمة',en:'Foundation ready — full feature coming'},
+ games_found_text:{ar:'تم تجهيز البنية التقنية لقسم الألعاب (التصنيفات، بطاقات الألعاب، نظام التشغيل داخل التطبيق). الألعاب الفعلية ستُضاف في مرحلة لاحقة من خارطة الطريق.',en:'The technical foundation for Games (categories, game cards, in-app launch system) is ready. Real games will be added in a later roadmap phase.'},
+ ai_found_text:{ar:'واجهة بلاك رابيت AI جاهزة، وربطها بنموذج ذكاء اصطناعي فعلي سيتم في مرحلة لاحقة من خارطة الطريق.',en:"Black Rabbit AI's interface is ready; connecting it to a real AI model will happen in a later roadmap phase."},
+ priv_badge:{ar:'مسودة أولية — تحتاج مراجعة قانونية',en:'Early draft — needs legal review'},
+ priv_disclaimer:{ar:'هذه مسودة أولية لأغراض النموذج التجريبي، وتحتاج مراجعة قانونية متخصصة قبل الإطلاق الرسمي.',en:'This is an early draft for prototype purposes and requires specialized legal review before official launch.'},
+ contact_badge:{ar:'يمكنك مراسلتنا الآن',en:'You can reach us now'},
+ contact_intro:{ar:'لأي استفسار أو مشكلة أو اقتراح، راسلنا مباشرة عبر البريد وسنرد في أقرب وقت.',en:'For any question, issue, or suggestion, email us directly and we will reply as soon as we can.'},
+ contact_email_btn:{ar:'✉️ راسلنا عبر البريد',en:'✉️ Email us'},
+ contact_note:{ar:'العنوان أعلاه مؤقت لغرض النموذج. نموذج مراسلة داخل التطبيق ونظام دعم فني سيُفعّلان مع بناء الواجهة الخلفية.',en:'The address above is a placeholder for the prototype. An in-app contact form and support ticketing system will go live once the backend is built.'},
+ share_badge:{ar:'جاهز للاستخدام الآن',en:'Working now'},
+ share_intro:{ar:'شارك المنصة مع أصدقائك بالطريقة التي تفضّلها:',en:'Share the platform with your friends however you like:'},
+ share_text:{ar:'جرّب AL BLACK RABBIT HIT 🐰',en:'Check out AL BLACK RABBIT HIT 🐰'},
+ share_copy:{ar:'نسخ الرابط',en:'Copy link'},
+ share_copied:{ar:'تم نسخ الرابط',en:'Link copied'},
+ share_wa:{ar:'واتساب',en:'WhatsApp'},
+ share_x:{ar:'X (تويتر)',en:'X (Twitter)'},
+ share_tg:{ar:'تيليجرام',en:'Telegram'},
+ ad_label:{ar:'مساحة إعلانية \u2014 معطّلة حالياً',en:'Ad slot \u2014 currently disabled'},
  ai_title:{ar:'بلاك رابيت AI',en:'Black Rabbit AI'},
  ai_q1:{ar:'ما الجديد في التطبيق؟',en:"What's new in the app?"},
  ai_a1:{ar:'أهلاً بك! يمكنني مساعدتك في التنقل، الألعاب، والمزيد ✨',en:'Hi there! I can help you navigate, play games, and more ✨'},
@@ -691,6 +750,7 @@ function render(){
   const ol=document.getElementById('ovLangTx');if(ol)ol.textContent=tgt;
   document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent=tr(el.dataset.i18n));
   document.querySelectorAll('[data-i18n-ph]').forEach(el=>el.placeholder=tr(el.dataset.i18nPh));
+  document.querySelectorAll('[data-i18n-label]').forEach(el=>el.dataset.label=tr(el.dataset.i18nLabel));
   document.getElementById('storiesRow').innerHTML=stories.map(s=>`<div class="story"><div class="av">${s.plus?'+':s.n[lang][0]}</div>${s.n[lang]}</div>`).join('');
   document.getElementById('feedRow').innerHTML=feed.map(p=>`<div class="post"><div class="prow"><div class="av">${p.n[lang][0]}</div><div class="pmeta"><b>${p.n[lang]}</b><span>${tr(p.t)}</span></div></div><div style="margin-top:5px">${p.c[lang]}</div><div class="pimg"></div><div class="pact"><span>❤️ ${p.l}</span><span>💬 ${p.cm}</span></div></div>`).join('');
   document.getElementById('videoGrid').innerHTML='<div></div><div></div><div></div>';
@@ -716,28 +776,64 @@ function buildNav(){
     ).join('');
   });
 }
-const PAGES={
- contact:{title:{ar:'تواصل معنا',en:'Contact us'},text:{ar:'نجهّز واجهة للتواصل مع فريق المنصة، وسنبنيها في المرحلة القادمة.',en:'We are preparing a way to reach the platform team. It will be built in the next phase.'},items:[{ar:'نموذج مراسلة',en:'Contact form'},{ar:'الدعم والمساعدة',en:'Help & support'},{ar:'حساباتنا الرسمية',en:'Official accounts'}]},
- share:{title:{ar:'شارك المنصة',en:'Share the platform'},text:{ar:'واجهة مشاركة المنصة مع الأصدقاء ستُبنى لاحقاً.',en:'The interface for sharing the platform with friends will be built later.'},items:[{ar:'مشاركة برابط',en:'Share by link'},{ar:'وسائل التواصل الاجتماعي',en:'Social networks'},{ar:'رمز QR',en:'QR code'}]},
- privacy:{title:{ar:'سياسة الخصوصية والاستخدام',en:'Privacy & Terms of Use'},text:{ar:'سيُضاف النص الرسمي للسياسة وشروط الاستخدام قبل الإطلاق.',en:'The official policy and terms text will be added before launch.'},items:[{ar:'سياسة الخصوصية',en:'Privacy policy'},{ar:'شروط الاستخدام',en:'Terms of use'},{ar:'سياسة المحتوى',en:'Content policy'}]},
+const PLAIN_PAGES={
  gplay:{title:{ar:'قريباً على Google Play',en:'Coming soon to Google Play'},text:{ar:'التطبيق قيد التطوير. سجّل الآن لتكون من أوائل من يعرف عند الإطلاق.',en:'The app is under development. Sign up now to be among the first to know at launch.'},cta:true},
  astore:{title:{ar:'قريباً على App Store',en:'Coming soon to the App Store'},text:{ar:'التطبيق قيد التطوير. سجّل الآن لتكون من أوائل من يعرف عند الإطلاق.',en:'The app is under development. Sign up now to be among the first to know at launch.'},cta:true}
 };
+const PRIVACY_CLAUSES=[
+ {t:{ar:'البيانات التي نجمعها',en:'Data we collect'},d:{ar:'الاسم والبريد الإلكتروني وصورة الحساب، والمحتوى الذي تنشره أو تتفاعل معه.',en:'Your name, email, profile photo, and the content you post or interact with.'}},
+ {t:{ar:'كيف نستخدمها',en:'How we use it'},d:{ar:'لتشغيل حسابك وتخصيص ما يظهر لك وتحسين المنصة \u2014 ولا تُباع بياناتك لأي جهة.',en:'To run your account, personalize what you see, and improve the platform \u2014 your data is never sold.'}},
+ {t:{ar:'مشاركة البيانات',en:'Sharing your data'},d:{ar:'لا تُشارك بياناتك مع أطراف خارجية إلا بموافقتك أو بأمر قانوني ملزم.',en:'Never shared with third parties except with your consent or a binding legal order.'}},
+ {t:{ar:'حقوقك',en:'Your rights'},d:{ar:'يمكنك طلب نسخة من بياناتك أو تعديلها أو حذف حسابك بالكامل في أي وقت.',en:'You can request a copy of your data, correct it, or delete your account at any time.'}},
+ {t:{ar:'الحد الأدنى للعمر',en:'Minimum age'},d:{ar:'استخدام المنصة مخصص لمن أتم 13 عاماً فأكثر.',en:'The platform is intended for users aged 13 and older.'}},
+ {t:{ar:'أمان حسابك',en:'Account security'},d:{ar:'أنت مسؤول عن سرية كلمة المرور، ونوصي بتفعيل التحقق بخطوتين عند توفره.',en:'You are responsible for keeping your password private; enable two-factor verification once available.'}},
+ {t:{ar:'قواعد المحتوى',en:'Content rules'},d:{ar:'يُمنع نشر محتوى مسيء أو غير قانوني، ولإدارة المنصة الحق في إزالته أو إيقاف الحساب المخالف.',en:'Abusive or illegal content is prohibited; the platform may remove it or suspend violating accounts.'}},
+ {t:{ar:'تحديث السياسة',en:'Policy updates'},d:{ar:'قد تُحدَّث هذه السياسة، وسنخطركم بأي تغيير جوهري قبل سريانه.',en:'This policy may be updated; we will notify you of any material change before it takes effect.'}}
+];
 let openKey=null;
 function openPage(k){openKey=k;renderPage();document.getElementById('pageOv').classList.add('open');document.body.style.overflow='hidden';}
 function closePage(toTopFlag){openKey=null;document.getElementById('pageOv').classList.remove('open');document.body.style.overflow='';if(toTopFlag===true)toTop();}
 function toTop(){window.scrollTo({top:0,behavior:'smooth'});}
 window.addEventListener('scroll',()=>{document.getElementById('toTop').classList.toggle('show',window.scrollY>400);},{passive:true});
+function copyShareLink(){
+  const done=()=>showToast('share_copied');
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(location.href).then(done).catch(done);}else{done();}
+}
+function renderPrivacy(){
+  return '<div class="rabbit"></div><span class="ov-badge">'+tr('priv_badge')+'</span><h2>'+tr('f_privacy')+'</h2>'+
+   '<div class="clauses">'+PRIVACY_CLAUSES.map((c,i)=>'<div class="clause"><b>'+(i+1)+'. '+c.t[lang]+'</b><p>'+c.d[lang]+'</p></div>').join('')+'</div>'+
+   '<p class="disclaimer">'+tr('priv_disclaimer')+'</p>';
+}
+function renderContact(){
+  return '<div class="rabbit"></div><span class="ov-badge">'+tr('contact_badge')+'</span><h2>'+tr('f_connect')+'</h2>'+
+   '<p>'+tr('contact_intro')+'</p>'+
+   '<a class="btn btn-p" style="max-width:280px;margin:16px auto 6px;display:block;text-decoration:none" href="mailto:support@alblackrabbithit.app">'+tr('contact_email_btn')+'</a>'+
+   '<p class="disclaimer">'+tr('contact_note')+'</p>';
+}
+function renderShare(){
+  const url=encodeURIComponent(location.href), txt=encodeURIComponent(tr('share_text'));
+  return '<div class="rabbit"></div><span class="ov-badge">'+tr('share_badge')+'</span><h2>'+tr('f_share')+'</h2>'+
+   '<p>'+tr('share_intro')+'</p>'+
+   '<div class="share-row">'+
+    '<button class="sbtn" onclick="copyShareLink()">\U0001F517 '+tr('share_copy')+'</button>'+
+    '<a class="sbtn" target="_blank" rel="noopener" href="https://wa.me/?text='+txt+'%20'+url+'">\U0001F7E2 '+tr('share_wa')+'</a>'+
+    '<a class="sbtn" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?text='+txt+'&url='+url+'">\u2716 '+tr('share_x')+'</a>'+
+    '<a class="sbtn" target="_blank" rel="noopener" href="https://t.me/share/url?url='+url+'&text='+txt+'">\u2708 '+tr('share_tg')+'</a>'+
+   '</div>';
+}
 function renderPage(){
   if(!openKey)return;
-  const p=PAGES[openKey];
-  document.getElementById('ovBack').textContent=(lang==='ar'?'→ ':'← ')+(lang==='ar'?'رجوع':'Back');
+  document.getElementById('ovBack').textContent=(lang==='ar'?'\u2192 ':'\u2190 ')+(lang==='ar'?'رجوع':'Back');
+  const body=document.getElementById('ovBody');
+  if(openKey==='privacy'){document.getElementById('ovTitle').textContent=tr('f_privacy');body.innerHTML=renderPrivacy();return;}
+  if(openKey==='contact'){document.getElementById('ovTitle').textContent=tr('f_connect');body.innerHTML=renderContact();return;}
+  if(openKey==='share'){document.getElementById('ovTitle').textContent=tr('f_share');body.innerHTML=renderShare();return;}
+  const p=PLAIN_PAGES[openKey];
   document.getElementById('ovTitle').textContent=p.title[lang];
-  document.getElementById('ovBody').innerHTML=
+  body.innerHTML=
     '<div class="rabbit"></div><span class="ov-badge">'+(lang==='ar'?'قيد الإنشاء':'Coming soon')+'</span>'+
     '<h2>'+p.title[lang]+'</h2><p>'+p.text[lang]+'</p>'+
-    (p.items?'<div class="ov-chips">'+p.items.map(i=>'<span>'+i[lang]+'</span>').join('')+'</div>':'')+
-    (p.cta?'<div class="ov-chips"></div><button class="btn btn-p" onclick="closePage();openSignup()">'+tr('signup_cta')+'</button>':'');
+    (p.cta?'<button class="btn btn-p" style="margin-top:16px" onclick="closePage();openSignup()">'+tr('signup_cta')+'</button>':'');
 }
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closePage();});
 function toggleLang(){
@@ -751,6 +847,12 @@ function openSignup(){
   const btns=document.querySelectorAll('#f-welcome .btn');
   btns.forEach(b=>b.classList.add('cta-flash'));
   setTimeout(()=>btns.forEach(b=>b.classList.remove('cta-flash')),1400);
+}
+function switchVideoTab(tab){
+  const v=document.getElementById('videoTabVideo'), r=document.getElementById('videoTabReels');
+  if(v)v.style.display=tab==='video'?'':'none';
+  if(r)r.style.display=tab==='reels'?'flex':'none';
+  document.querySelectorAll('.vsw').forEach(b=>b.classList.toggle('on',b.dataset.tab===tab));
 }
 function focusFrame(id){
   const el=document.getElementById(id);
